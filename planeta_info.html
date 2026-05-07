@@ -140,7 +140,9 @@ body::before{
 </head>
 <body>
 <div class="container">
-  <a onclick="history.back()" class="back-btn">&#8592; Volver al Sistema Solar</a>
+ <a id="volverBtn" class="back-btn">
+  &#8592; Volver al Sistema Solar
+</a>
   <div id="content"></div>
   <div class="footer">&#9728; Sistema Solar AR</div>
 </div>
@@ -187,6 +189,23 @@ function render(){
   `;
 }
 render();
+
+/* =====================================================
+   BOTÓN VOLVER
+===================================================== */
+
+document
+  .getElementById('volverBtn')
+  .addEventListener('click', ()=>{
+
+    window.parent.postMessage({
+
+      type:'SS_CLOSE'
+
+    }, '*');
+
+});
+
 </script>
 </body>
 </html>
