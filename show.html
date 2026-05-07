@@ -224,7 +224,7 @@ function render(){
 
   const stats=d.stats.map(([l,v])=>`<div class="p-stat"><span class="p-lbl">${l}</span><span class="p-val" style="color:${d.color}">${v}</span></div>`).join('');
 
-  el.innerHTML=`
+    el.innerHTML=`
     <div class="p-header">
       ${vis}
       <div>
@@ -240,10 +240,25 @@ function render(){
     </div>
   `;
 
-  /* Notificar al padre (Onirix) que ya cargamos — por si usa iframe */
+  /* =====================================================
+     NOTIFICAR A ONIRIX
+  ===================================================== */
+
   try {
-    window.parent.postMessage({ type: 'SS_LOADED', planet: pid }, '*');
-  } catch(e) {}
+
+    window.parent.postMessage({
+
+      type:'SS_SHOW',
+      planet:pid
+
+    }, '*');
+
+  } catch(e) {
+
+    console.error(e);
+
+  }
+
 }
 
 render();
